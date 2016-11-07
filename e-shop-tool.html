@@ -24,7 +24,7 @@
         background-color: teal;
         font-family: 'Ubuntu', sans-serif;
     }
-    
+
     .container {
         margin-top: 30px;
     }
@@ -32,14 +32,17 @@
     	margin-top: 20px;
     }
     td {
-  		white-space: normal !important; 
-  		word-wrap: break-word;  
-	}	  
+  		white-space: normal !important;
+  		word-wrap: break-word;
+	}
+    strong {
+        font-size: 20px;
+    }
     </style>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
-                <h2>E-Shop Used Product Finder</h2>
+                <h2>Used Product Finder</h2>
             </div>
         </div><!-- End 1st Row -->
         <div class="row">
@@ -54,9 +57,9 @@
                         <input type="text" class="form-control" id="serialInput" placeholder="Serial Number" required>
                     </div>
                     <button type="submit" class="btn btn-default btn-block">Find</button>
-                </form><!-- End Form -->                
+                </form><!-- End Form -->
             </div>
-        </div><!-- End 2n Row -->        
+        </div><!-- End 2n Row -->
         <div class="row tableRow" id="calc">
             <div class="col-md-6 col-md-offset-3">
             	<h2 class="text-center">Converter</h2>
@@ -65,12 +68,30 @@
             			<tr>
             				<th class="col-sm-1">
             					<div class="input-group">
-								  <span class="input-group-addon" id="basic-addon1">Inches</span>
-								  <input type="text" class="form-control" v-model="inch" v-on:keyup.enter="toMM">
+								  <span class="input-group-addon">Inches</span>
+								  <input type="text" class="form-control" v-model="inch1">
 								</div>
 							</th>
-            				<td class="col-sm-1 text-center">{{output}}</td>
-            			</tr>            			
+            				<td class="col-sm-1 text-center"><strong>{{inch1 | toMM }}</strong></td>
+            			</tr>
+                        <tr>
+            				<th class="col-sm-1">
+            					<div class="input-group">
+								  <span class="input-group-addon">Inches</span>
+								  <input type="text" class="form-control" v-model="inch2">
+								</div>
+							</th>
+            				<td class="col-sm-1 text-center"><strong>{{inch2 | toMM }}</strong></td>
+            			</tr>
+                        <tr>
+            				<th class="col-sm-1">
+            					<div class="input-group">
+								  <span class="input-group-addon">Inches</span>
+								  <input type="text" class="form-control" v-model="inch3">
+								</div>
+							</th>
+            				<td class="col-sm-1 text-center"><strong>{{inch3 | toMM }}</strong></td>
+            			</tr>
             		</tbody>
             	</table>
             	<table class="table">
@@ -78,15 +99,16 @@
             			<tr>
             				<th class="col-sm-1">
             					<div class="input-group">
-								  <span class="input-group-addon" id="basic-addon1">Libres</span>
-								  <input type="text" class="form-control" v-model="lib" v-on:keyup.enter="toKG">
+								  <span class="input-group-addon">Libres</span>
+								  <input type="text" class="form-control" v-model="lib">
 								</div>
 							</th>
-            				<td class="col-sm-1 text-center">{{outputKg}}</td>
+            				<td class="col-sm-1 text-center"><strong>{{ lib | toKG }}</strong></td>
             			</tr>
-            		</tbody>        		
+            		</tbody>
             	</table>
-            </div>            
+            </div>
+            <div class="col-md-2 col-md-offset-8"><button id='clear' type="button" class="btn btn-secondary btn-sm" v-on:click='clearBoxes'>Clear Boxes</button></div>            
         </div><!-- End 3rd Row -->
     </div><!-- End Container -->
     <script type="text/javascript">
@@ -99,27 +121,35 @@
     	el: '#calc',
     	data: {
     		lib: '',
-    		inch: '',
-    		output: '',
-    		outputKg: ''
+    		inch1: '',
+    		inch2: '',
+            inch3: '',
     	},
-    	methods: {
-    		toMM: function(){
-    			if (isNaN(this.inch)){
-    				this.output = "Enter a Number";
-    			}else{
-    				this.output = (parseFloat(this.inch) * 25.4).toFixed(2) + ' ' + 'mm';
-    			}
-    		},
-    		toKG: function(){
-    			if(isNaN(this.lib)){
-    				this.outputKg = "Enter a Number";
-    			}else{
-    				this.outputKg = (parseFloat(this.lib) * 0.45359237).toFixed(2) + ' ' + 'kg';
-    			}    			
-    		}    		
-    	}
-    });    
+    	filters: {
+            toMM: function(value){
+                if (!value || isNaN(value)){
+                    return "Enter a valid number";
+                }else{
+                    return (parseFloat(value) * 2.54).toFixed(2) + ' ' + 'mm';
+                }
+            },
+            toKG: function(value){
+                if (!value || isNaN(value)){
+                    return "Enter a valid number";
+                }else{
+                    return (parseFloat(value) * 0.45359237).toFixed(2) + ' ' + 'kg';
+                }
+            }
+        },
+        methods: {
+            clearBoxes: function(event){
+                this.inch1 = '';
+                this.inch2 = '';
+                this.inch3 = '';
+                this.lib = '';
+            }
+        }
+    });
     </script>
 </body>
 
