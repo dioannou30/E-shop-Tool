@@ -1,0 +1,34 @@
+body {
+    background-color: teal;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+.tableRow {
+    margin-top: 20px;
+}
+
+td {
+    white-space: normal !important;
+    word-wrap: break-word;
+}
+
+.table {
+    font-size: 12px;
+}
+
+#tableHead {
+    background-color: teal;
+    color: white;
+}
+
+strong {
+    font-size: 15px;
+}
+#dpfis {
+    background-color: red;
+    color: white;
+}
