@@ -24,27 +24,43 @@
         background-color: teal;
         font-family: 'Ubuntu', sans-serif;
     }
-
+    
     .container {
         margin-top: 30px;
     }
+    
     .tableRow {
-    	margin-top: 20px;
+        margin-top: 20px;
     }
+    
     td {
-  		white-space: normal !important;
-  		word-wrap: break-word;
-	}
+        white-space: normal !important;
+        word-wrap: break-word;
+    }
+    
+    .table {
+        font-size: 12px;
+    }
+    
+    #tableHead {
+        background-color: teal;
+        color: white;
+    }
+    
     strong {
         font-size: 15px;
     }
     </style>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3 text-center">
+            <div class="col-md-1">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Fis Courrier</button>
+            </div>
+            <div class="col-md-6 col-md-offset-2 text-center">
                 <h2>Used Product Finder</h2>
             </div>
-        </div><!-- End 1st Row -->
+        </div>
+        <!-- End 1st Row -->
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <form onsubmit="myFunction()">
@@ -57,60 +73,1978 @@
                         <input type="text" class="form-control" id="serialInput" placeholder="Serial Number" required>
                     </div>
                     <button type="submit" class="btn btn-default btn-block">Find</button>
-                </form><!-- End Form -->
+                </form>
+                <!-- End Form -->
             </div>
-        </div><!-- End 2n Row -->
+        </div>
+        <!-- End 2n Row -->
         <div class="row tableRow" id="calc">
             <div class="col-md-6 col-md-offset-3">
-            	<h2 class="text-center">Converter</h2>
-            	<table class="table">
-		     		<tbody>
-            			<tr>
-            				<th class="col-sm-1">
-            					<div class="input-group">
-								  <span class="input-group-addon">Inches</span>
-								  <input type="text" class="form-control" v-model="inch1">
-								</div>
-							</th>
-            				<td class="col-sm-1 text-center"><strong>{{inch1 | toMM }}</strong></td>
-            			</tr>
+                <h2 class="text-center">Converter</h2>
+                <table class="table">
+                    <tbody>
                         <tr>
-            				<th class="col-sm-1">
-            					<div class="input-group">
-								  <span class="input-group-addon">Inches</span>
-								  <input type="text" class="form-control" v-model="inch2">
-								</div>
-							</th>
-            				<td class="col-sm-1 text-center"><strong>{{inch2 | toMM }}</strong></td>
-            			</tr>
+                            <th class="col-sm-1">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Inches</span>
+                                    <input type="text" class="form-control" v-model="inch1">
+                                </div>
+                            </th>
+                            <td class="col-sm-1 text-center"><strong>{{inch1 | toMM }}</strong></td>
+                        </tr>
                         <tr>
-            				<th class="col-sm-1">
-            					<div class="input-group">
-								  <span class="input-group-addon">Inches</span>
-								  <input type="text" class="form-control" v-model="inch3">
-								</div>
-							</th>
-            				<td class="col-sm-1 text-center"><strong>{{inch3 | toMM }}</strong></td>
-            			</tr>
-            		</tbody>
-            	</table>
-            	<table class="table">
-            		<tbody>
-            			<tr>
-            				<th class="col-sm-1">
-            					<div class="input-group">
-								  <span class="input-group-addon">Libres</span>
-								  <input type="text" class="form-control" v-model="lib">
-								</div>
-							</th>
-            				<td class="col-sm-1 text-center"><strong>{{ lib | toKG }}</strong></td>
-            			</tr>
-            		</tbody>
-            	</table>
+                            <th class="col-sm-1">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Inches</span>
+                                    <input type="text" class="form-control" v-model="inch2">
+                                </div>
+                            </th>
+                            <td class="col-sm-1 text-center"><strong>{{inch2 | toMM }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th class="col-sm-1">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Inches</span>
+                                    <input type="text" class="form-control" v-model="inch3">
+                                </div>
+                            </th>
+                            <td class="col-sm-1 text-center"><strong>{{inch3 | toMM }}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="col-sm-1">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Libres</span>
+                                    <input type="text" class="form-control" v-model="lib">
+                                </div>
+                            </th>
+                            <td class="col-sm-1 text-center"><strong>{{ lib | toKG }}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="col-md-2 col-md-offset-8"><button id='clear' type="button" class="btn btn-secondary btn-sm" v-on:click='clearBoxes'>Clear Boxes</button></div>            
-        </div><!-- End 3rd Row -->
-    </div><!-- End Container -->
+            <div class="col-md-2 col-md-offset-8">
+                <button id='clear' type="button" class="btn btn-secondary btn-sm" v-on:click='clearBoxes'>Clear Boxes</button>
+            </div>
+        </div>
+        <!-- End 3rd Row -->
+    </div>
+    <!-- End Container -->
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-header">
+                <input type="text" id="search" class="form-control" placeholder="Type to search">
+            </div>
+            <div class="modal-content">
+                <table id="modalTable" class="table table-condensed table-bordered table-hover">
+                    <thead id="tableHead">
+                        <tr>
+                            <th>ΠΟΛΗ</th>
+                            <th>ΔΙΕΥΘΥΝΣΗ</th>
+                            <th>Τ.Κ.</th>
+                            <th>Νομός</th>
+                            <th>Αναλυτική Περιφέρεια</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ΑΘΗΝΑ</td>
+                            <td>ΑΣΚΛΗΠΙΟΥ 25, ΚΡΥΟΝΕΡΙ</td>
+                            <td>14568</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>Π.ΡΑΛΛΗ</td>
+                            <td>Π. ΡΑΛΛΗ 45</td>
+                            <td>17778</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΓ. ΑΝΑΡΓΥΡΟΙ</td>
+                            <td>ΚΥΠΡΟΥ 41 & ΑΡΕΤΗΣ</td>
+                            <td>13561</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΓ. ΠΑΡΑΣΚΕΥΗ</td>
+                            <td>ΜΕΣΟΓΕΙΩΝ 389</td>
+                            <td>15343</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΓ.ΣΤΕΦΑΝΟΣ</td>
+                            <td>ΛΕΩΦ. ΜΑΡΑΘΩΝΟΣ 33, ΑΝΟΙΞΗ</td>
+                            <td>14565</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΕΡΟΔΡΟΜΙΟ</td>
+                            <td>ΚΑΡΓΚΟ ΚΤΙΡΙΟ 27</td>
+                            <td>19004</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΡΓΥΡΟΥΠΟΛΗ</td>
+                            <td>Λ. ΚΥΠΡΟΥ 158</td>
+                            <td>16452</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΜΠΕΛΟΚΗΠΟΙ</td>
+                            <td>Κ. ΤΣΑΛΔΑΡΗ 74</td>
+                            <td>11476</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΣΠΡΟΠΥΡΓΟΣ</td>
+                            <td>ΔΗΜ. ΛΙΑΚΟΥ 10</td>
+                            <td>19300</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΓΑΛΑΤΣΙ</td>
+                            <td>Λ. ΓΑΛΑΤΣΙΟΥ 43</td>
+                            <td>11141</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΝΕΑ ΙΩΝΙΑ</td>
+                            <td>Κ.ΒΑΡΝΑΛΗ 20 & ΠΑΛΑΙΩΝ ΠΑΤΡΩΝ ΓΕΡΜΑΝΟΥ</td>
+                            <td>14231</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΓΛΥΦΑΔΑ</td>
+                            <td>ΓΟΥΝΑΡΗ 229, ΑΝΩ ΓΛΥΦΑΔΑ</td>
+                            <td>16674</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΖΩΓΡΑΦΟΥ</td>
+                            <td>ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ 125</td>
+                            <td>11527</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΗΛΙΟΥΠΟΛΗ</td>
+                            <td>ΕΘΝΙΚΗΣ ΑΝΤΙΣΤΑΣΕΩΣ 139Β</td>
+                            <td>17236</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΙΠΠΟΚΡΑΤΟΥΣ</td>
+                            <td>ΙΠΠΟΚΡΑΤΟΥΣ 33</td>
+                            <td>10680</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΛΛΙΘΕΑ</td>
+                            <td>ΕΛ. ΒΕΝΙΖΕΛΟΥ 272Α</td>
+                            <td>17675</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΕΡΑΤΣΙΝΙ</td>
+                            <td>Λ. ΔΗΜΟΚΡΑΤΙΑΣ 140</td>
+                            <td>18756</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΟΡΥΔΑΛΛΟΣ</td>
+                            <td>ΓΡΗΓΟΡΙΟΥ ΛΑΜΠΡΑΚΗ 193</td>
+                            <td>18120</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΗΦΙΣΙΑ</td>
+                            <td>ΕΛΑΙΩΝ 41</td>
+                            <td>14564</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΟΛΩΝΟΣ</td>
+                            <td>ΛΕΝΟΡΜΑΝ 203</td>
+                            <td>10442</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΟΥΚΑΚΙ</td>
+                            <td>ΚΑΛΛΙΡΡΟΗΣ 18</td>
+                            <td>11743</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΑΓΚΡΑΤΙ</td>
+                            <td>ΣΠ. ΜΕΡΚΟΥΡΗ 62</td>
+                            <td>11634</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΛΑΥΡΙΟ</td>
+                            <td>Λ. ΑΘΗΝΩΝ 8-10</td>
+                            <td>19500</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΛΥΚΑΒΗΤΤΟΣ</td>
+                            <td>ΞΕΝΟΚΡΑΤΟΥΣ 41</td>
+                            <td>10676</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΑΡΟΥΣΙ</td>
+                            <td>ΑΡΤΕΜΙΔΟΣ 2 & Κ.ΑΙΤΩΛΟΥ 3</td>
+                            <td>15125</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΕΓΑΡΑ</td>
+                            <td>ΧΡ. ΜΩΡΑΙΤΟΥ 49</td>
+                            <td>19100</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΕΝΙΔΙ</td>
+                            <td>ΛΕΩΦ. ΠΑΡΝΗΘΟΣ 132</td>
+                            <td>13678</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΕΤΑΜΟΡΦΩΣΗ</td>
+                            <td>Γ. ΠΑΠΑΝΔΡΕΟΥ 175</td>
+                            <td>14452</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΟΣΧΑΤΟ</td>
+                            <td>ΧΡ. ΣΜΥΡΝΗΣ 117A</td>
+                            <td>18345</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΙΚΕΡΜΙ</td>
+                            <td>Λ. ΜΑΡΑΘΩΝΟΣ 50, ΠΙΚΕΡΜΙ</td>
+                            <td>19009</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΝΕΑ ΜΑΚΡΗ</td>
+                            <td>Λ. ΜΑΡΑΘΩΝΟΣ 56, Ν.ΜΑΚΡΗ</td>
+                            <td>19005</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΝΕΑ ΣΜΥΡΝΗ</td>
+                            <td>ΕΛ. ΒΕΝΙΖΕΛΟΥ 148</td>
+                            <td>17122</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΑΙΑΝΙΑ</td>
+                            <td>ΛΕΩΦ.ΣΟΥΝΙΟΥ 54, ΜΑΡΚΟΠΟΥΛΟ</td>
+                            <td>19400</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΟΡΩΠΙ</td>
+                            <td>ΒΑΣ.ΚΩΝΣΤΑΝΤΙΝΟΥ 264</td>
+                            <td>19400</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΑΛΛΗΝΗ</td>
+                            <td>Λ. ΜΑΡΑΘΩΝΟΣ 8</td>
+                            <td>15351</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΕΙΡΑΙΑΣ</td>
+                            <td>Β' ΜΕΡΑΡΧΙΑΣ & ΠΡΑΞΙΤΕΛΟΥΣ 192</td>
+                            <td>18535</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΕΡΙΣΤΕΡΙ</td>
+                            <td>ΘΗΒΩΝ 210</td>
+                            <td>12134</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΛ. ΒΑΘΗ</td>
+                            <td>ΣΟΥΡΜΕΛΗ 5</td>
+                            <td>10438</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΝΙΓΓΟΣ</td>
+                            <td>ΚΑΝΙΓΓΟΣ 10</td>
+                            <td>10677</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΥΝΤΑΓΜΑ</td>
+                            <td>ΜΗΤΡΟΠΟΛΕΩΣ 64</td>
+                            <td>10563</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΧΑΙΔΑΡΙ</td>
+                            <td>ΛΕΩΦ. ΑΘΗΝΩΝ 281</td>
+                            <td>12462</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΙΓΑΛΕΩ</td>
+                            <td>ΙΕΡΑ ΟΔΟΣ 271</td>
+                            <td>12244</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΧΑΛΑΝΔΡΙ</td>
+                            <td>ΠΑΠΑΝΙΚΟΛΗ 50</td>
+                            <td>15232</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΥΘΗΜΕΡΟΝ ΑΤΤΙΚΗΣ</td>
+                            <td>ΓΕΩΡΓΙΟΥ ΠΑΠΑΝΔΡΕΟΥ 85, ΓΟΥΔΙ</td>
+                            <td>15773</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΤΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΓ. ΝΙΚΟΛΑΟΣ</td>
+                            <td>ΚΟΝΤΟΓΙΑΝΝΗ 23</td>
+                            <td>72100</td>
+                            <td>ΛΑΣΙΘΙΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΝΕΑΠΟΛΗ</td>
+                            <td>ΠΛ. ΕΛ. ΒΕΝΙΖΕΛΟΥ 31</td>
+                            <td>72400</td>
+                            <td>ΛΑΣΙΘΙΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΡΠΑΘΟΣ</td>
+                            <td>ΕΘΝ. ΑΝΤΙΣΤΑΣΕΩΣ 2</td>
+                            <td>85700</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΣΟΣ</td>
+                            <td>ΦΡΥ ΚΑΣΟΥ</td>
+                            <td>85800</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΗΤΕΙΑ</td>
+                            <td>ΑΝΔΡ. ΠΑΠΑΝΔΡΕΟΥ 10</td>
+                            <td>72300</td>
+                            <td>ΛΑΣΙΘΙΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΓΡΙΝΙΟ</td>
+                            <td>ΜΑΒΙΛΗ & ΔΑΓΚΛΗ 32</td>
+                            <td>30100</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΘΕΡΜΟ</td>
+                            <td>ΧΑΡ. ΤΡΙΚΟΥΠΗ (πλησίον ΚΤΕΛ)</td>
+                            <td>30008</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΓ. ΟΡΟΣ</td>
+                            <td>ΚΑΡΥΕΣ ΑΓ. ΟΡΟΥΣ</td>
+                            <td>63086</td>
+                            <td>ΧΑΛΚΙΔΙΚΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΑΙΓΙΝΑ</td>
+                            <td>ΑΦΑΙΑΣ 31</td>
+                            <td>18010</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΡΓΟΣΑΡΩΝΙΚΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΙΓΙΟ</td>
+                            <td>ΡΗΓΑ ΦΕΡΑΙΟΥ 148</td>
+                            <td>25100</td>
+                            <td>ΑΧΑΪΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΙΓΕΙΡΑ</td>
+                            <td>Π.Ε.Ο. ΠΑΤΡΩΝ-ΑΘΗΝΩΝ, ΑΙΓΕΙΡΑ</td>
+                            <td>25010</td>
+                            <td>ΑΧΑΪΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΛΑΒΡΥΤΑ</td>
+                            <td>ΒΑΣ. ΚΩΝΣΤΑΝΤΙΝΟΥ 5</td>
+                            <td>25001</td>
+                            <td>ΑΧΑΪΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΛΕΞΑΝΔΡΟΥΠΟΛΗ</td>
+                            <td>ΕΜΠΟΡΙΟΥ 96</td>
+                            <td>68100</td>
+                            <td>ΕΒΡΟΥ</td>
+                            <td>ΘΡΑΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΑΜΟΘΡΑΚΗ</td>
+                            <td>ΚΑΜΑΡΙΩΤΙΣΣΑ</td>
+                            <td>68002</td>
+                            <td>ΕΒΡΟΥ</td>
+                            <td>ΘΡΑΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΛΕΞΑΝΔΡΕΙΑ</td>
+                            <td>Δ. ΒΕΤΣΟΠΟΥΛΟΥ 100</td>
+                            <td>59300</td>
+                            <td>ΗΜΑΘΙΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΑΛΙΒΕΡΙ</td>
+                            <td>ΤΑΜΥΝΑΙΩΝ 45</td>
+                            <td>34500</td>
+                            <td>ΕΥΒΟΙΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΡΥΣΤΟΣ</td>
+                            <td>ΔΥΤ. ΠΡΟΕΚΤΑΣΗ ΕΛΛΗΝΩΝ ΑΜΕΡΙΚΗΣ</td>
+                            <td>34001</td>
+                            <td>ΕΥΒΟΙΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΚΥΡΟΣ</td>
+                            <td>ΝΗΣΟΣ ΣΚΥΡΟΣ</td>
+                            <td>34007</td>
+                            <td>ΕΥΒΟΙΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΛΟΝΝΗΣΟΣ</td>
+                            <td>ΠΑΡΑΛΙΑ ΑΛΟΝΝΗΣΟΥ</td>
+                            <td>37005</td>
+                            <td>ΜΑΓΝΗΣΙΑΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΑΜΑΛΙΑΔΑ</td>
+                            <td>ΡΗΓΑ ΦΕΡΑΙΟΥ 58</td>
+                            <td>27200</td>
+                            <td>ΗΛΕΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΛΕΧΑΙΝΑ</td>
+                            <td>ΠΟΛΥΤΕΧΝΕΙΟΥ 30</td>
+                            <td>27053</td>
+                            <td>ΗΛΕΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΜΥΝΤΑΙΟ</td>
+                            <td>28ου ΣΥΝΤΑΓΜΑΤΟΣ ΠΕΖΙΚΟΥ 14</td>
+                            <td>53200</td>
+                            <td>ΦΛΩΡΙΝΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΔΥΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΜΦΙΛΟΧΙΑ</td>
+                            <td>Ν. ΣΤΡΑΤΟΥ 59</td>
+                            <td>30500</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΜΦΙΣΣΑ</td>
+                            <td>ΣΑΛΩΝΩΝ 32</td>
+                            <td>33100</td>
+                            <td>ΦΩΚΙΔΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΝΔΡΟΣ</td>
+                            <td>ΧΩΡΑ ΑΝΔΡΟΥ</td>
+                            <td>84500</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΡΓΟΣ</td>
+                            <td>ΣΙΜΙΤΖΟΠΟΥΛΟΥ 17</td>
+                            <td>21200</td>
+                            <td>ΑΡΓΟΛΙΔΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΡΚΑΛΟΧΩΡΙ</td>
+                            <td>ΕΛ. ΒΕΝΙΖΕΛΟΥ 11</td>
+                            <td>70300</td>
+                            <td>ΗΡΑΚΛΕΙΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΡΤΑ</td>
+                            <td>ΠΕΡ/ΚΗ ΟΔΟΣ ΑΡΤΑΣ</td>
+                            <td>47100</td>
+                            <td>ΑΡΤΑΣ</td>
+                            <td>ΗΠΕΙΡΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΦΙΛΙΠΠΙΑΔΑ</td>
+                            <td>ΜΠΙΖΑΝΙΟΥ 161</td>
+                            <td>48200</td>
+                            <td>ΠΡΕΒΕΖΗΣ</td>
+                            <td>ΗΠΕΙΡΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΣΤΥΠΑΛΑΙΑ</td>
+                            <td>ΑΣΤΥΠΑΛΑΙΑ</td>
+                            <td>85900</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΒΕΡΟΙΑ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ 50</td>
+                            <td>59100</td>
+                            <td>ΗΜΑΘΙΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΝΑΟΥΣΑ</td>
+                            <td>ΚΑΜΠΙΤΗ & ΒΥΡΩΝΟΣ 28</td>
+                            <td>59200</td>
+                            <td>ΗΜΑΘΙΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΒΟΛΟΣ</td>
+                            <td>ΑΡΓΟΝΑΥΤΩΝ 20</td>
+                            <td>38333</td>
+                            <td>ΜΑΓΝΗΣΙΑΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΑΛΜΥΡΟΣ</td>
+                            <td>ΒΑΣ. ΚΩΝΣΤΑΝΤΙΝΟΥ 138</td>
+                            <td>37100</td>
+                            <td>ΜΑΓΝΗΣΙΑΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΑΓΡΙΑ</td>
+                            <td>ΚΟΡΑΗ 2</td>
+                            <td>37300</td>
+                            <td>ΜΑΓΝΗΣΙΑΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΒΕΛΕΣΤΙΝΟ</td>
+                            <td>ΡΗΓΑ ΦΕΡΑΙΟΥ 84</td>
+                            <td>37500</td>
+                            <td>ΜΑΓΝΗΣΙΑΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>Ν. ΑΓΧΙΑΛΟΣ</td>
+                            <td>30ης ΙΟΥΛΙΟΥ 114Α</td>
+                            <td>37400</td>
+                            <td>ΜΑΓΝΗΣΙΑΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΓΙΑΝΝΙΤΣΑ</td>
+                            <td>ΑΡΒΑΝΙΤΗ 2</td>
+                            <td>58100</td>
+                            <td>ΠΕΛΛΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΓΡΕΒΕΝΑ</td>
+                            <td>Κ. ΤΑΛΙΑΔΟΥΡΗ 60</td>
+                            <td>51100</td>
+                            <td>ΓΡΕΒΕΝΩΝ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΔΥΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΔΙΔΥΜΟΤΕΙΧΟ</td>
+                            <td>ΒΕΝΙΖΕΛΟΥ 116</td>
+                            <td>68300</td>
+                            <td>ΕΒΡΟΥ</td>
+                            <td>ΘΡΑΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΔΡΑΜΑ</td>
+                            <td>ΦΙΛΙΠΠΟΥ 47</td>
+                            <td>66100</td>
+                            <td>ΔΡΑΜΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΑΝΑΤΟΛΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΝΕΥΡΟΚΟΠΙ</td>
+                            <td>ΚΑΤΩ ΝΕΥΡΟΚΟΠΙ</td>
+                            <td>66033</td>
+                            <td>ΔΡΑΜΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΑΝΑΤΟΛΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΠΡΟΣΟΤΣΑΝΗ</td>
+                            <td>ΠΛΑΤΕΙΑ ΔΗΜΟΚΡΑΤΙΑΣ</td>
+                            <td>66200</td>
+                            <td>ΔΡΑΜΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΑΝΑΤΟΛΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΖΑΚΥΝΘΟΣ</td>
+                            <td>ΑΓ. ΕΛΕΥΘΕΡΙΟΥ 7 & Ι.ΚΛΑΥΔΙΑΝΟΥ</td>
+                            <td>29100</td>
+                            <td>ΖΑΚΥΝΘΟΥ</td>
+                            <td>ΕΠΤΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΗΓΟΥΜΕΝΙΤΣΑ</td>
+                            <td>ΙΩΑΝΝΙΝΩΝ 1</td>
+                            <td>46100</td>
+                            <td>ΘΕΣΠΡΩΤΙΑΣ</td>
+                            <td>ΗΠΕΙΡΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΑΡΑΜΥΘΙΑ</td>
+                            <td>ΚΕΝΤΡ. ΠΕΡΙΦΕΡΕΙΑΚΟΣ</td>
+                            <td>46200</td>
+                            <td>ΘΕΣΠΡΩΤΙΑΣ</td>
+                            <td>ΗΠΕΙΡΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΗΡΑΚΛΕΙΟ</td>
+                            <td>ΚΑΡΤΕΡΟΥ 18-20 & ΜΕΛΠΩΜΕΝΗΣ </td>
+                            <td>71306</td>
+                            <td>ΗΡΑΚΛΕΙΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>περιοχή Βούτες</td>
+                            <td>ΔΙΑΣΤΑΥΡΩΣΗ ΠΕΠΑΓΝΗ - Ι.Τ.Ε.</td>
+                            <td>71500</td>
+                            <td>ΗΡΑΚΛΕΙΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΗΡΑΚΛΕΙΟ ΚΕΝΤΡΟ</td>
+                            <td>ΓΙΑΜΑΛΑΚΗ 50 - Irakleio Center</td>
+                            <td>71202</td>
+                            <td>ΗΡΑΚΛΕΙΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>περιοχή Χανιόπορτας</td>
+                            <td>ΠΟΛΥΤΕΧΝΕΙΟΥ & ΚΙΣΣΑΜΟΥ 2</td>
+                            <td>71202</td>
+                            <td>ΗΡΑΚΛΕΙΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΘΑΣΟΣ</td>
+                            <td>ΓΑΛΛ.ΑΡΧΑΙΟΛ.ΣΧΟΛΗΣ & ΜΕΓ.ΑΛΕΞΑΝΔΡΟΥ</td>
+                            <td>64004</td>
+                            <td>ΚΑΒΑΛΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΑΝΑΤΟΛΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΘΗΒΑ</td>
+                            <td>ΑΥΛΙΔΟΣ 35</td>
+                            <td>32200</td>
+                            <td>ΒΟΙΩΤΙΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                            <td>5ο ΧΛΜ.Ε.Ο. ΘΕΣ/ΚΗΣ - ΑΘΗΝΩΝ</td>
+                            <td>57009</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΓ. ΔΗΜΗΤΡΙΟY</td>
+                            <td>ΑΓ. ΔΗΜΗΤΡΙΟΥ 99</td>
+                            <td>54633</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΝΑΛΗΨΗ</td>
+                            <td>Β. ΟΛΓΑΣ 120 Β</td>
+                            <td>54645</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΣΠΡΟΒΑΛΤΑ</td>
+                            <td>ΒΕΝΙΖΕΛΟΥ 15, ΣΤΑΥΡΟΣ</td>
+                            <td>57014</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΕΥΚΑΡΠΙΑ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ 110, ΩΡΑΙΟΚΑΣΤΡΟ</td>
+                            <td>57013</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΘΕΡΜΗ</td>
+                            <td>ΡΑΦΑΗΛΙΔΗ ΠΑΠΑΔΑΚΗ 3</td>
+                            <td>57001</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>Ι. ΔΡΑΓΟΥΜΗ</td>
+                            <td>Ι. ΔΡΑΓΟΥΜΗ 17</td>
+                            <td>54626</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΒΑΡΔΑΡΗΣ</td>
+                            <td>ΦΡΑΓΚΩΝ 2</td>
+                            <td>54626</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΛΑΜΑΡΙΑ</td>
+                            <td>ΕΘΝ. ΑΝΤΙΣΤΑΣΕΩΣ 48 B</td>
+                            <td>55133</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΛΟΧΩΡΙ</td>
+                            <td>28ης ΟΚΤΩΒΡΙΟΥ 97</td>
+                            <td>57009</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΟΥΦΑΛΙΑ</td>
+                            <td>ΕΘΝ. ΑΝΤΙΣΤΑΣΕΩΣ 23</td>
+                            <td>57100</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΛΑΓΚΑΔΑΣ</td>
+                            <td>2ο χλμ. ΛΑΓΚΑΔΑ - ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>57200</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΣΒΕΣΤΟΧΩΡΙ (ΡΕΤΖΙΚΙ)</td>
+                            <td>Γ.ΠΑΠΑΝΙΚΟΛΑΟΥ 143</td>
+                            <td>57010</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΛΕΥΚΟΣ ΠΥΡΓΟΣ</td>
+                            <td>ΤΣΙΜΙΣΚΗ 128</td>
+                            <td>54621</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΟΝΑΣΤΗΡΙΟΥ</td>
+                            <td>ΜΟΝΑΣΤΗΡΙΟΥ 237</td>
+                            <td>54628</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΝΤΕΠΩ</td>
+                            <td>ΚΑΣΟΜΟΥΛΗ 20</td>
+                            <td>54655</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΕΡΑΙΑ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ 31</td>
+                            <td>57019</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΙΝΔΟΣ</td>
+                            <td>ΑΛ. ΠΑΠΑΝΑΣΤΑΣΙΟΥ 21</td>
+                            <td>57400</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΤΑΥΡΟΥΠΟΛΗ</td>
+                            <td>ΑΡΙΣΤΟΤΕΛΟΥΣ 37, ΕΥΟΣΜΟΣ</td>
+                            <td>56224</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΤΟΥΜΠΑ</td>
+                            <td>ΔΙΟΓΕΝΟΥΣ 27, ΚΑΤΩ ΤΟΥΜΠΑ</td>
+                            <td>54453</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΥΘΗΜΕΡΟΝ ΘΕΣ/ΚΗΣ</td>
+                            <td>ΟΛΥΜΠΙΑΔΟΣ 58</td>
+                            <td>54633</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΙΕΡΑΠΕΤΡΑ</td>
+                            <td>ΔΗΜΟΚΡΑΤΙΑΣ 53</td>
+                            <td>72200</td>
+                            <td>ΛΑΣΙΘΙΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΙΚΑΡΙΑ</td>
+                            <td>ΑΓΙΟΣ ΚΗΡΥΚΟΣ</td>
+                            <td>83300</td>
+                            <td>ΣΑΜΟΥ</td>
+                            <td>ΑΙΓΑΙΟΥ ΝΗΣΙΑ </td>
+                        </tr>
+                        <tr>
+                            <td>ΙΩΑΝΝΙΝΑ 1</td>
+                            <td>ΔΩΔΩΝΗΣ 161</td>
+                            <td>45221</td>
+                            <td>ΙΩΑΝΝΙΝΩΝ</td>
+                            <td>ΗΠΕΙΡΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΕΤΣΟΒΟ</td>
+                            <td>ΤΟΣΙΤΣΑ 14</td>
+                            <td>44200</td>
+                            <td>ΙΩΑΝΝΙΝΩΝ</td>
+                            <td>ΗΠΕΙΡΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΙΩΑΝΝΙΝΑ 2</td>
+                            <td>ΚΑΛΛΑΡΗ 47</td>
+                            <td>45444</td>
+                            <td>ΙΩΑΝΝΙΝΩΝ</td>
+                            <td>ΗΠΕΙΡΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΟΝΙΤΣΑ</td>
+                            <td>1η ΠΑΡΟΔΟΣ ΑΒΕΡΩΦ</td>
+                            <td>44100</td>
+                            <td>ΙΩΑΝΝΙΝΩΝ</td>
+                            <td>ΗΠΕΙΡΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΙΣΤΙΑΙΑ</td>
+                            <td>Ι. ΜΕΤΑΞΑ 5</td>
+                            <td>34200</td>
+                            <td>ΕΥΒΟΙΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΙΔΗΨΟΣ</td>
+                            <td>ΕΡΜΟΥ 24, ΛΟΥΤΡΑ ΑΙΔΗΨΟΥ</td>
+                            <td>34300</td>
+                            <td>ΕΥΒΟΙΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΒΑΛΑ</td>
+                            <td>ΑΜΕΡΙΚΑΝΙΚΟΥ ΕΡΥΘΡΟΥ ΣΤΑΥΡΟΥ 193</td>
+                            <td>65201</td>
+                            <td>ΚΑΒΑΛΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΑΝΑΤΟΛΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΧΡΥΣΟΥΠΟΛΗ</td>
+                            <td>ΗΠΕΙΡΟΥ 3</td>
+                            <td>64200</td>
+                            <td>ΚΑΒΑΛΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΑΝΑΤΟΛΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΛΑΜΑΤΑ</td>
+                            <td>ΦΑΡΩΝ 167 & ΠΙΝΔΑΡΟΥ</td>
+                            <td>24100</td>
+                            <td>ΜΕΣΣΗΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΓΑΡΓΑΛΙΑΝΟΙ</td>
+                            <td>ΠΛΑΤΕΙΑ ΚΟΛΟΚΟΤΡΩΝΗ</td>
+                            <td>24400</td>
+                            <td>ΜΕΣΣΗΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΥΠΑΡΙΣΣΙΑ</td>
+                            <td>ΕΛ. ΒΕΝΙΖΕΛΟΥ & ΧΡΙΣΤΙΑΝΟΥΠΟΛΕΩΣ 22</td>
+                            <td>24500</td>
+                            <td>ΜΕΣΣΗΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΟΡΩΝΗ</td>
+                            <td>ΠΕΡΙΚΛΗ ΡΑΛΛΗ 9</td>
+                            <td>24004</td>
+                            <td>ΜΕΣΣΗΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΕΛΙΓΑΛΑΣ</td>
+                            <td>ΠΗΓΑΔΑΣ 13</td>
+                            <td>24002</td>
+                            <td>ΜΕΣΣΗΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΕΣΣΗΝΗ</td>
+                            <td>Ι. ΚΑΡΑΤΖΑ 2</td>
+                            <td>24200</td>
+                            <td>ΜΕΣΣΗΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΥΛΟΣ</td>
+                            <td>ΠΛΑΤΕΙΑ ΟΙΚΟΝΟΜΙΔΗ</td>
+                            <td>24001</td>
+                            <td>ΜΕΣΣΗΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΧΩΡΑ ΤΡΙΦΥΛΛΙΑΣ</td>
+                            <td>ΠΑΠΑΦΛΕΣΣΑ 2</td>
+                            <td>24600</td>
+                            <td>ΜΕΣΣΗΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΛΛΟΝΗ</td>
+                            <td>ΑΓΙΟΣ ΝΕΚΤΑΡΙΟΣ ΚΑΛΛΟΝΗΣ</td>
+                            <td>81107</td>
+                            <td>ΛΕΣΒΟΥ</td>
+                            <td>ΑΙΓΑΙΟΥ ΝΗΣΙΑ </td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΛΥΜΝΟΣ</td>
+                            <td>ΕΝΟΡΙΑ ΑΓ. ΝΙΚΟΛΑΟΥ</td>
+                            <td>85200</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΡΔΙΤΣΑ</td>
+                            <td>ΚΑΡΑΙΣΚΑΚΗ 24</td>
+                            <td>43100</td>
+                            <td>ΚΑΡΔΙΤΣΑΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΣΟΦΑΔΕΣ</td>
+                            <td>ΠΛΑΣΤΗΡΑ 55</td>
+                            <td>43300</td>
+                            <td>ΚΑΡΔΙΤΣΑΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΡΠΕΝΗΣΙ</td>
+                            <td>ΑΘ. ΔΙΑΚΟΥ 3</td>
+                            <td>36100</td>
+                            <td>ΕΥΡΥΤΑΝΙΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΣΤΟΡΙΑ</td>
+                            <td>ΓΡΑΜΜΟΥ 39</td>
+                            <td>52100</td>
+                            <td>ΚΑΣΤΟΡΙΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΔΥΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΕΣΟΠΟΤΑΜΙΑ</td>
+                            <td>ΕΙΣΟΔΟΣ ΜΕΣΟΠΟΤΑΜΙΑΣ 3Η ΠΑΡΟΔΟΣ ΔΕΞΙΑ</td>
+                            <td>52050</td>
+                            <td>ΚΑΣΤΟΡΙΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΔΥΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΤΕΡΙΝΗ</td>
+                            <td>ΘΕΣΣΑΛΟΝΙΚΗΣ 78-80</td>
+                            <td>60100</td>
+                            <td>ΠΙΕΡΙΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΚΕΑ</td>
+                            <td>ΚΟΡΗΣΣΙΑ ΚΕΑΣ</td>
+                            <td>84002</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΕΡΚΥΡΑ</td>
+                            <td>ΣΤΡΑΤΗΓΟΥ ΚΟΚΟΝΕΤΣΗ 10 (έναντι λιμεναρχείου)</td>
+                            <td>49100</td>
+                            <td>ΚΕΡΚΥΡΑΣ</td>
+                            <td>ΕΠΤΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΛΕΥΚΙΜΜΗ</td>
+                            <td>21ης ΜΑΡΤΙΟΥ 358</td>
+                            <td>49080</td>
+                            <td>ΚΕΡΚΥΡΑΣ</td>
+                            <td>ΕΠΤΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΑΞΟΙ</td>
+                            <td>ΛΟΓΓΟΣ ΠΑΞΩΝ</td>
+                            <td>49082</td>
+                            <td>ΚΕΡΚΥΡΑΣ</td>
+                            <td>ΕΠΤΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΡΟΔΑ</td>
+                            <td>ΡΟΔΑ ΚΕΡΚΥΡΑΣ</td>
+                            <td>49081</td>
+                            <td>ΚΕΡΚΥΡΑΣ</td>
+                            <td>ΕΠΤΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΕΦΑΛΛΟΝΙΑ</td>
+                            <td>ΛΕΩΦ. ΒΕΡΓΩΤΗ 51</td>
+                            <td>28100</td>
+                            <td>ΚΕΦΑΛΛΗΝΙΑΣ</td>
+                            <td>ΕΠΤΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΙΘΑΚΗ</td>
+                            <td>ΒΑΘΥ ΙΘΑΚΗΣ</td>
+                            <td>28300</td>
+                            <td>ΚΕΦΑΛΛΗΝΙΑΣ</td>
+                            <td>ΕΠΤΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΛΗΞΟΥΡΙ</td>
+                            <td>ΠΛΑΤΕΙΑ ΑΦΩΝ ΑΛΙΒΙΖΑΤΟΥ</td>
+                            <td>28200</td>
+                            <td>ΚΕΦΑΛΛΗΝΙΑΣ</td>
+                            <td>ΕΠΤΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΙΛΚΙΣ</td>
+                            <td>ΕΛ. ΒΕΝΙΖΕΛΟΥ 40</td>
+                            <td>61100</td>
+                            <td>ΚΙΛΚΙΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΠΟΛΥΚΑΣΤΡΟ</td>
+                            <td>ΠΛ. ΤΑΚΑΝΤΖΑ 8</td>
+                            <td>61200</td>
+                            <td>ΚΙΛΚΙΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΚΟΖΑΝΗ</td>
+                            <td>ΤΕΡΜΑ ΦΙΛΙΠΠΟΥ Β'</td>
+                            <td>50100</td>
+                            <td>ΚΟΖΑΝΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΔΥΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΕΡΒΙΑ</td>
+                            <td>ΛΑΣΣΑΝΗ 1</td>
+                            <td>50500</td>
+                            <td>ΚΟΖΑΝΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΔΥΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΟΜΟΤΗΝΗ</td>
+                            <td>ΔΗΜΗΤΡΙΟΥ ΤΣΕΤΙΝΕ 3</td>
+                            <td>69100</td>
+                            <td>ΡΟΔΟΠΗΣ</td>
+                            <td>ΘΡΑΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΟΜΟΤΗΝΗ </td>
+                            <td>Λ. ΟΡΦΕΩΣ 3</td>
+                            <td>69100</td>
+                            <td>ΡΟΔΟΠΗΣ</td>
+                            <td>ΘΡΑΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΟΡΙΝΘΟΣ</td>
+                            <td>ΔΑΜΑΣΚΗΝΟΥ & ΑΠ.ΠΑΥΛΟΥ 9</td>
+                            <td>20100</td>
+                            <td>ΚΟΡΙΝΘΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΒΡΑΧΑΤΙ</td>
+                            <td>ΕΛ. ΒΕΝΙΖΕΛΟΥ 81</td>
+                            <td>20006</td>
+                            <td>ΚΟΡΙΝΘΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΙΑΤΟ</td>
+                            <td>ΕΘΝ. ΑΝΤΙΣΤΑΣΕΩΣ 45</td>
+                            <td>20200</td>
+                            <td>ΚΟΡΙΝΘΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΛΟΥΤΡΑΚΙ</td>
+                            <td>Κ. ΜΠΟΛΕΤΗ 8</td>
+                            <td>20300</td>
+                            <td>ΚΟΡΙΝΘΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΝΕΜΕΑ</td>
+                            <td>ΛΕΩΦ. ΠΑΠΑΚΩΝΣΤΑΝΤΙΝΟΥ 42</td>
+                            <td>20500</td>
+                            <td>ΚΟΡΙΝΘΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΞΥΛΟΚΑΣΤΡΟ</td>
+                            <td>Ι. ΙΩΑΝΝΟΥ 155</td>
+                            <td>20400</td>
+                            <td>ΚΟΡΙΝΘΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΟΦΙΚΟ</td>
+                            <td>ΣΟΦΙΚΟ ΚΟΡΙΝΘΙΑΣ</td>
+                            <td>20004</td>
+                            <td>ΚΟΡΙΝΘΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΡΑΝΙΔΙ</td>
+                            <td>ΑΓ. ΧΑΡΑΛΑΜΠΟΥΣ 2</td>
+                            <td>21300</td>
+                            <td>ΑΡΓΟΛΙΔΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΥΘΝΟΣ</td>
+                            <td>ΜΕΡΙΧΑΣ ΚΥΘΝΟΥ</td>
+                            <td>84006</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΩΣ</td>
+                            <td>ΜΑΡΜΑΡΩΤΟ ΚΩ</td>
+                            <td>85300</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΛΑΜΙΑ</td>
+                            <td>ΘΕΡΜΟΠΥΛΩΝ 23</td>
+                            <td>35100</td>
+                            <td>ΦΘΙΩΤΙΔΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΤΑΛΑΝΤΗ</td>
+                            <td>ΟΙΛΕΩΣ 11</td>
+                            <td>35200</td>
+                            <td>ΦΘΙΩΤΙΔΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΔΟΜΟΚΟΣ</td>
+                            <td>ΔΗΜΟΚΡΑΤΙΑΣ 44</td>
+                            <td>35010</td>
+                            <td>ΦΘΙΩΤΙΔΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΜΜΕΝΑ ΒΟΥΡΛΑ</td>
+                            <td>ΓΕΡΑΣΙΜΟΥ ΒΑΣΙΛΕΙΑΔΗ 3</td>
+                            <td>35008</td>
+                            <td>ΦΘΙΩΤΙΔΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΑΛΕΣΙΝΑ</td>
+                            <td>ΝΙΚ. ΚΑΚΚΑΒΑ 20</td>
+                            <td>35001</td>
+                            <td>ΦΘΙΩΤΙΔΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΤΥΛΙΔΑ</td>
+                            <td>ΖΗΣΗ ΔΙΒΡΙΩΤΗ 6</td>
+                            <td>35300</td>
+                            <td>ΦΘΙΩΤΙΔΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΛΑΡΙΣΑ 1</td>
+                            <td>ΒΕΛΛΗ 6</td>
+                            <td>41222</td>
+                            <td>ΛΑΡΙΣΗΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΛΑΡΙΣΑ 2</td>
+                            <td>ΗΡ. ΠΟΛΥΤΕΧΝΕΙΟΥ 60</td>
+                            <td>41335</td>
+                            <td>ΛΑΡΙΣΗΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΑΓΙΑ</td>
+                            <td>ΟΛΥΜΠΟΥ 9</td>
+                            <td>40003</td>
+                            <td>ΛΑΡΙΣΗΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΕΛΑΣΣΟΝΑ</td>
+                            <td>ΔΡΑΧΜΗΣ 1</td>
+                            <td>40200</td>
+                            <td>ΛΑΡΙΣΗΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΤΥΡΝΑΒΟΣ</td>
+                            <td>ΗΡ. ΠΟΛΥΤΕΧΝΕΙΟΥ 15</td>
+                            <td>40100</td>
+                            <td>ΛΑΡΙΣΗΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΦΑΡΣΑΛΑ</td>
+                            <td>ΛΑΜΙΑΣ 2</td>
+                            <td>40300</td>
+                            <td>ΛΑΡΙΣΗΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΛΕΡΟΣ</td>
+                            <td>ΒΑΣ. ΓΕΩΡΓΙΟΥ 9 - ΛΑΚΚΙ</td>
+                            <td>85400</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΑΤΜΟΣ</td>
+                            <td>ΣΚΑΛΑ ΠΑΤΜΟΥ</td>
+                            <td>85500</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΛΕΥΚΑΔΑ</td>
+                            <td>ΕΥΣΤ. ΖΑΚΚΑ 21 - ΠΛ. ΑΓ. ΜΗΝΑ</td>
+                            <td>31100</td>
+                            <td>ΛΕΥΚΑΔΑΣ</td>
+                            <td>ΕΠΤΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΒΟΝΙΤΣΑ</td>
+                            <td>ΕΛΕΥΘΕΡΙΟΥ ΒΕΝΙΖΕΛΟΥ</td>
+                            <td>30002</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΛΗΜΝΟΣ</td>
+                            <td>ΓΑΡΟΥΦΑΛΙΔΟΥ 48</td>
+                            <td>81400</td>
+                            <td>ΛΕΣΒΟΥ</td>
+                            <td>ΑΙΓΑΙΟΥ ΝΗΣΙΑ </td>
+                        </tr>
+                        <tr>
+                            <td>ΛΙΒΑΔΕΙΑ</td>
+                            <td>Δ. ΠΑΠΑΣΠΥΡΟΥ 13 (ΠΡΩΗΝ ΑΘΗΝΩΝ)</td>
+                            <td>32100</td>
+                            <td>ΒΟΙΩΤΙΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΟΡΧΟΜΕΝΟΣ</td>
+                            <td>ΠΕΣΟΝΤΩΝ ΜΑΧΗΤΩΝ 21</td>
+                            <td>32300</td>
+                            <td>ΒΟΙΩΤΙΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΕΣΟΛΟΓΓΙ</td>
+                            <td>ΣΠΥΡΟΥ ΜΟΥΣΤΑΚΛΗ 8</td>
+                            <td>30200</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΙΤΩΛΙΚΟ</td>
+                            <td>ΚΩΝ/ΝΟΥ ΛΑΣΚΑΡΗ 48</td>
+                            <td>30400</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΣΤΑΚΟΣ</td>
+                            <td>Π. ΚΑΡΑΣΕΒΔΑ 52</td>
+                            <td>30006</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΝΕΟΧΩΡΙ</td>
+                            <td>ΚΑΤΟΧΗ ΝΕΟΧΩΡΙΟΥ</td>
+                            <td>30001</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΗΛΟΣ</td>
+                            <td>ΑΔΑΜΑΝΤΑΣ ΜΗΛΟΥ</td>
+                            <td>84800</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΟΙΡΕΣ</td>
+                            <td>25ΗΣ ΜΑΡΤΙΟΥ 64 (ΕΝΑΝΤΙ ΗΡΩΟΥ)</td>
+                            <td>70400</td>
+                            <td>ΗΡΑΚΛΕΙΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΥΚΟΝΟΣ</td>
+                            <td>ΝΕΑ ΠΕΡΙΦΕΡΕΙΑΚΗ ΟΔΟΣ, ΘΕΣΗ ΕΥΑΓΓΕΛΙΣΤΡΑΚΙ</td>
+                            <td>84600</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΥΤΙΛΗΝΗ</td>
+                            <td>ΕΛ. ΒΕΝΙΖΕΛΟΥ 20</td>
+                            <td>81100</td>
+                            <td>ΛΕΣΒΟΥ</td>
+                            <td>ΑΙΓΑΙΟΥ ΝΗΣΙΑ </td>
+                        </tr>
+                        <tr>
+                            <td>ΠΛΩΜΑΡΙ</td>
+                            <td>ΠΛΑΤΕΙΑ ΠΛΩΜΑΡΙΟΥ</td>
+                            <td>81200</td>
+                            <td>ΛΕΣΒΟΥ</td>
+                            <td>ΑΙΓΑΙΟΥ ΝΗΣΙΑ </td>
+                        </tr>
+                        <tr>
+                            <td>ΝΑΞΟΣ</td>
+                            <td>ΧΩΡΑ ΝΑΞΟΥ</td>
+                            <td>84300</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΝΑΥΠΑΚΤΟΣ</td>
+                            <td>ΑΘΑΝΑΣΙΑΔΗ ΝΟΒΑ 30</td>
+                            <td>30300</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ</td>
+                            <td>ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΝΑΥΠΛΙΟ</td>
+                            <td>ΧΑΡ. ΤΡΙΚΟΥΠΗ 1 & ΤΕΝΕΔΟΥ</td>
+                            <td>21100</td>
+                            <td>ΑΡΓΟΛΙΔΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΞΑΝΘΗ</td>
+                            <td>ΤΕΡΜΑ 28ης ΟΚΤΩΒΡΙΟΥ 14Α</td>
+                            <td>67100</td>
+                            <td>ΞΑΝΘΗΣ</td>
+                            <td>ΘΡΑΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΞΑΝΘΗ</td>
+                            <td>ΤΣΙΜΙΣΚΗ 10Δ</td>
+                            <td>67100</td>
+                            <td>ΞΑΝΘΗΣ</td>
+                            <td>ΘΡΑΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΟΡΕΣΤΙΑΔΑ</td>
+                            <td>ΚΩΝΣΤΑΝΤΙΝΟΥΠΟΛΕΩΣ 206</td>
+                            <td>68200</td>
+                            <td>ΕΒΡΟΥ</td>
+                            <td>ΘΡΑΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΑΡΟΣ</td>
+                            <td>ΠΕΡΙΦΕΡΕΙΑΚΟΣ ΠΑΡΟΙΚΙΑΣ ΠΑΡΟΥ</td>
+                            <td>84400</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΑΤΡΑ 1</td>
+                            <td>ΑΓ. ΑΝΔΡΕΟΥ 125</td>
+                            <td>26221</td>
+                            <td>ΑΧΑΪΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΑΤΡΑ 2</td>
+                            <td>ΑΚΡΩΤΗΡΙΟΥ 9</td>
+                            <td>26334</td>
+                            <td>ΑΧΑΪΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΑΤΡΑ 3</td>
+                            <td>ΝΟΤΑΡΑ 157</td>
+                            <td>26442</td>
+                            <td>ΑΧΑΪΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΑΤΡΑ 4 -ΚΑΤΩ ΑΧΑΙΑ</td>
+                            <td>ΑΘΗΝΑΣ 15</td>
+                            <td>25200</td>
+                            <td>ΑΧΑΪΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΟΛΥΓΥΡΟΣ</td>
+                            <td>ΠΟΛΥΤΕΧΝΕΙΟΥ 23</td>
+                            <td>63100</td>
+                            <td>ΧΑΛΚΙΔΙΚΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΑΡΝΑΙΑ</td>
+                            <td>ΠΛΑΤΕΙΑ ΑΡΝΑΙΑΣ</td>
+                            <td>63074</td>
+                            <td>ΧΑΛΚΙΔΙΚΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΣΣΑΝΔΡΕΙΑ</td>
+                            <td>ΚΑΠΕΤΑΝ ΧΑΨΑ 1</td>
+                            <td>63077</td>
+                            <td>ΧΑΛΚΙΔΙΚΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΜΟΥΔΑΝΙΑ</td>
+                            <td>ΑΓ. ΓΕΩΡΓΙΟΥ 19</td>
+                            <td>63200</td>
+                            <td>ΧΑΛΚΙΔΙΚΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΝΕΑ ΚΑΛΛΙΚΡΑΤΕΙΑ</td>
+                            <td>ΑΝΤ. ΚΕΛΕΣΗ 50</td>
+                            <td>63080</td>
+                            <td>ΧΑΛΚΙΔΙΚΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΝΙΚΗΤΗ</td>
+                            <td>ΛΕΩΦΟΡΟΣ ΣΙΘΩΝΙΑΣ</td>
+                            <td>63088</td>
+                            <td>ΧΑΛΚΙΔΙΚΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΠΟΡΟΣ</td>
+                            <td>ΜΟΝΑΣΤΗΡΙΟΥ 4</td>
+                            <td>18020</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΡΓΟΣΑΡΩΝΙΚΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΡΕΒΕΖΑ</td>
+                            <td>ΛΕΩΦ. ΕΙΡΗΝΗΣ 16</td>
+                            <td>48100</td>
+                            <td>ΠΡΕΒΕΖΗΣ</td>
+                            <td>ΗΠΕΙΡΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΝΑΛΑΚΙ</td>
+                            <td>ΑΓ. ΠΑΝΤΕΛΕΗΜΟΝΟΣ 35</td>
+                            <td>48062</td>
+                            <td>ΠΡΕΒΕΖΗΣ</td>
+                            <td>ΗΠΕΙΡΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΑΡΓΑ</td>
+                            <td>ΑΛ. ΜΠΑΓΚΑ 27</td>
+                            <td>48060</td>
+                            <td>ΠΡΕΒΕΖΗΣ</td>
+                            <td>ΗΠΕΙΡΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΤΟΛΕΜΑΙΔΑ</td>
+                            <td>25ης ΜΑΡΤΙΟΥ 103 & ΚΑΝΑΡΗ </td>
+                            <td>50200</td>
+                            <td>ΚΟΖΑΝΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΔΥΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΥΡΓΟΣ</td>
+                            <td>28ΗΣ ΟΚΤΩΒΡΙΟΥ 41</td>
+                            <td>27100</td>
+                            <td>ΗΛΕΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΖΑΧΑΡΩ</td>
+                            <td>Ε.Ο. ΠΥΡΓΟΥ - ΚΥΠΑΡΙΣΣΙΑΣ 14</td>
+                            <td>27054</td>
+                            <td>ΗΛΕΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΡΕΣΤΕΝΑ</td>
+                            <td>ΞΕΝΟΦΩΝΤΟΣ 47</td>
+                            <td>27055</td>
+                            <td>ΗΛΕΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΡΕΘΥΜΝΟ</td>
+                            <td>ΣΤΑΜΑΘΙΟΥΔΑΚΗ 38</td>
+                            <td>74100</td>
+                            <td>ΡΕΘΥΜΝΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΡΕΘΥΜΝΟ </td>
+                            <td>ΔΗΜΟΚΡΑΤΙΑΣ 2</td>
+                            <td>74100</td>
+                            <td>ΡΕΘΥΜΝΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΠΕΡΑΜΑ</td>
+                            <td>ΠΕΡΑΜΑ</td>
+                            <td>74052</td>
+                            <td>ΡΕΘΥΜΝΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΡΟΔΟΣ</td>
+                            <td>ΑΥΣΤΡΑΛΙΑΣ 60</td>
+                            <td>85100</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΡΟΔΟΣ </td>
+                            <td>ΑΠΟΣΤΟΛΟΥ ΠΑΥΛΟΥ 10Α, ΑΝΑΛΗΨΗ</td>
+                            <td>85100</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΦΑΝΤΟΥ</td>
+                            <td>ΠΑΝΟΡΜΙΤΗ ΡΑΜΟΥ 60</td>
+                            <td>85103</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΑΡΧΑΓΓΕΛΟΣ</td>
+                            <td>Γ.ΠΑΠΑΝΔΡΕΟΥ, ΑΡΧΑΓΓΕΛΟΣ</td>
+                            <td>85102</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΣΤΕΛΟΡΙΖΟ</td>
+                            <td>ΚΑΣΤΕΛΟΡΙΖΟ (ΜΕΓΙΣΤΗ)</td>
+                            <td>85111</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΡΕΜΑΣΤΗ</td>
+                            <td>ΛΕΩΦ. ΕΛΕΥΘΕΡΙΑΣ 9</td>
+                            <td>85104</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΥΜΗ</td>
+                            <td>ΓΥΑΛΟΣ ΣΥΜΗΣ</td>
+                            <td>85600</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΟΥ</td>
+                            <td>ΔΩΔΕΚΑΝΗΣΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΑΛΑΜΙΝΑ</td>
+                            <td>ΛΕΩΦ. ΣΑΛΑΜΙΝΟΣ 148</td>
+                            <td>18900</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΡΓΟΣΑΡΩΝΙΚΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΑΜΟΣ</td>
+                            <td>Θ. ΣΟΦΟΥΛΗ & Ι. ΛΕΚΑΤΗ 1</td>
+                            <td>83100</td>
+                            <td>ΣΑΜΟΥ</td>
+                            <td>ΑΙΓΑΙΟΥ ΝΗΣΙΑ </td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΡΛΟΒΑΣΙ</td>
+                            <td>ΠΥΘΑΓΟΡΑ 18 (ΠΑΡΑΠΛΕΥΡΩΣ ΔΕΗ)</td>
+                            <td>83200</td>
+                            <td>ΣΑΜΟΥ</td>
+                            <td>ΑΙΓΑΙΟΥ ΝΗΣΙΑ </td>
+                        </tr>
+                        <tr>
+                            <td>ΣΑΝΤΟΡΙΝΗ</td>
+                            <td>ΕΠΑΡΧΙΑΚΗ ΟΔΟΣ ΦΗΡΩΝ-ΜΕΣΣΑΡΙΑΣ</td>
+                            <td>84700</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΙΟΣ</td>
+                            <td>ΧΩΡΑ ΙΟΥ</td>
+                            <td>84001</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΕΡΙΦΟΣ</td>
+                            <td>ΛΙΒΑΔΙ ΣΕΡΙΦΟΥ</td>
+                            <td>84005</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΕΡΡΕΣ</td>
+                            <td>ΒΕΝΙΖΕΛΟΥ 91</td>
+                            <td>62121</td>
+                            <td>ΣΕΡΡΩΝ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΑΝΑΤΟΛΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΣΚΙΑΘΟΣ</td>
+                            <td>ΘΕΣΗ "ΚΑΛΟ ΠΗΓΑΔΙ" ΟΔΟΥ ΠΑΠΑΔΙΑΜΑΝΤΗ</td>
+                            <td>37002</td>
+                            <td>ΜΑΓΝΗΣΙΑΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΣΚΟΠΕΛΟΣ</td>
+                            <td>ΠΕΡΙΟΧΗ ΑΓ.ΡΗΓΙΝΑΚΗΣ</td>
+                            <td>37003</td>
+                            <td>ΜΑΓΝΗΣΙΑΣ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΣΚΥΔΡΑ</td>
+                            <td>ΕΘΝ. ΑΝΤΙΣΤΑΣΕΩΣ 36</td>
+                            <td>58500</td>
+                            <td>ΠΕΛΛΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΑΡΙΔΑΙΑ</td>
+                            <td>ΚΥΠΡΟΥ 31</td>
+                            <td>58400</td>
+                            <td>ΠΕΛΛΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΕΔΕΣΣΑ</td>
+                            <td>ΑΡΧ. ΠΑΝΤΕΛΕΗΜΟΝΟΣ 16</td>
+                            <td>58200</td>
+                            <td>ΠΕΛΛΗΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΚΕΝΤΡΙΚΗ </td>
+                        </tr>
+                        <tr>
+                            <td>ΣΠΑΡΤΗ</td>
+                            <td>ΛΕΩΝΙΔΟΥ 40</td>
+                            <td>23100</td>
+                            <td>ΛΑΚΩΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΟΛΑΟΙ</td>
+                            <td>ΚΕΝΤΡΙΚΗ ΟΔΟΣ</td>
+                            <td>23052</td>
+                            <td>ΛΑΚΩΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΟΝΕΜΒΑΣΙΑ</td>
+                            <td>ΚΕΝΤΡΙΚΗ ΟΔΟΣ</td>
+                            <td>23070</td>
+                            <td>ΛΑΚΩΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΝΕΑΠΟΛΗ</td>
+                            <td>ΑΝΔΡΟΥΤΣΟΥ 28</td>
+                            <td>23053</td>
+                            <td>ΛΑΚΩΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΚΑΛΑ</td>
+                            <td>ΣΚΑΛΑ ΛΑΚΩΝΙΑΣ</td>
+                            <td>23051</td>
+                            <td>ΛΑΚΩΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΓΥΘΕΙΟ</td>
+                            <td>ΕΡΜΟΥ & Ι. ΓΡΗΓΟΡΑΚΗ 23</td>
+                            <td>23200</td>
+                            <td>ΛΑΚΩΝΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΥΘΗΡΑ</td>
+                            <td>ΛΙΒΑΔΙ ΚΥΘΗΡΩΝ</td>
+                            <td>80100</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΠΕΤΣΕΣ</td>
+                            <td>ΧΩΡΑ ΣΠΕΤΣΩΝ</td>
+                            <td>18050</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΡΓΟΣΑΡΩΝΙΚΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΥΡΟΣ</td>
+                            <td>ΝΕΩΡΙΟΥ 23 & ΠΕΤΡΙΤΣΗ</td>
+                            <td>84100</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΙΦΝΟΣ</td>
+                            <td>ΑΠΟΛΛΩΝΙΑ ΣΙΦΝΟΥ</td>
+                            <td>84003</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΤΗΝΟΣ</td>
+                            <td>Λ. ΜΕΓΑΛΟΧΑΡΗΣ 31</td>
+                            <td>84200</td>
+                            <td>ΚΥΚΛΑΔΩΝ</td>
+                            <td>ΚΥΚΛΑΔΕΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΤΡΙΚΑΛΑ</td>
+                            <td>ΒΑΣ. ΤΣΙΤΣΑΝΗ 41</td>
+                            <td>42100</td>
+                            <td>ΤΡΙΚΑΛΩΝ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΛΑΜΠΑΚΑ</td>
+                            <td>ΚΟΝΔΥΛΗ 24</td>
+                            <td>42200</td>
+                            <td>ΤΡΙΚΑΛΩΝ</td>
+                            <td>ΘΕΣΣΑΛΙΑ & ΣΠΟΡΑΔΕΣ ΝΗΣΟΙ </td>
+                        </tr>
+                        <tr>
+                            <td>ΤΡΙΠΟΛΗ</td>
+                            <td>ΕΛ. ΒΕΝΙΖΕΛΟΥ 28</td>
+                            <td>22100</td>
+                            <td>ΑΡΚΑΔΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΕΓΑΛΟΠΟΛΗ</td>
+                            <td>ΝΙΚΗΤΑΡΑ & ΤΟΥΡΛΕΝΤΕ</td>
+                            <td>22200</td>
+                            <td>ΑΡΚΑΔΙΑΣ</td>
+                            <td>ΠΕΛΟΠΟΝΝΗΣΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΥΔΡΑ</td>
+                            <td>ΟΙΚΟΝΟΜΟΥ 14</td>
+                            <td>18040</td>
+                            <td>ΑΤΤΙΚΗΣ</td>
+                            <td>ΑΡΓΟΣΑΡΩΝΙΚΟΣ</td>
+                        </tr>
+                        <tr>
+                            <td>ΦΛΩΡΙΝΑ</td>
+                            <td>ΜΑΚΕΔΟΝΟΜΑΧΩΝ 13</td>
+                            <td>53100</td>
+                            <td>ΦΛΩΡΙΝΑΣ</td>
+                            <td>ΜΑΚΕΔΟΝΙΑ ΔΥΤΙΚΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΧΑΛΚΙΔΑ</td>
+                            <td>ΑΝΤΙΓΟΝΟΥ 38</td>
+                            <td>34100</td>
+                            <td>ΕΥΒΟΙΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΣΧΗΜΑΤΑΡΙ</td>
+                            <td>ΛΕΩΦ. ΟΙΝΟΗΣ 18</td>
+                            <td>32009</td>
+                            <td>ΒΟΙΩΤΙΑΣ</td>
+                            <td>ΣΤΕΡΕΑ ΕΛΛΑΔΑ & ΕΥΒΟΙΑ</td>
+                        </tr>
+                        <tr>
+                            <td>ΧΑΝΙΑ</td>
+                            <td>ΑΝ. ΓΟΓΟΝΗ 129</td>
+                            <td>73136</td>
+                            <td>ΧΑΝΙΩΝ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>περιοχή Σούδας</td>
+                            <td>ΕΘΝ. ΒΕΝΙΖΕΛΟΥ 109, ΣΟΥΔΑ</td>
+                            <td>73200</td>
+                            <td>ΧΑΝΙΩΝ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>περιοχή Ν.Κυδωνίας</td>
+                            <td>ΚΙΣΣΑΜΟΥ 127</td>
+                            <td>73131</td>
+                            <td>ΧΑΝΙΩΝ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>περιοχή ΚΤΕΛ</td>
+                            <td>ΙΩΝΙΑΣ 3</td>
+                            <td>73134</td>
+                            <td>ΧΑΝΙΩΝ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>περιοχή Ακρωτήρι</td>
+                            <td>ΕΛ. ΒΕΝΙΖΕΛΟΥ ΚΟΥΝΟΥΠΙΔΙΑΝΑ</td>
+                            <td>73100</td>
+                            <td>ΧΑΝΙΩΝ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΚΑΣΤΕΛΛΙ ΚΙΣΣΑΜΟΥ</td>
+                            <td>ΠΛ. ΕΛ. ΒΕΝΙΖΕΛΟΥ</td>
+                            <td>73400</td>
+                            <td>ΧΑΝΙΩΝ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΜΑΛΕΜΕ</td>
+                            <td>ΜΑΛΕΜΕ ΚΥΔΩΝΙΑΣ</td>
+                            <td>73014</td>
+                            <td>ΧΑΝΙΩΝ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΧΕΡΣΟΝΗΣΟΣ</td>
+                            <td>ΣΑΝΟΥΔΑΚΗ 28Γ</td>
+                            <td>70014</td>
+                            <td>ΗΡΑΚΛΕΙΟΥ</td>
+                            <td>ΚΡΗΤΗ</td>
+                        </tr>
+                        <tr>
+                            <td>ΧΙΟΣ</td>
+                            <td>ΠΟΛΥΤΕΧΝΕΙΟΥ 31</td>
+                            <td>82100</td>
+                            <td>ΧΙΟΥ</td>
+                            <td>ΑΙΓΑΙΟΥ ΝΗΣΙΑ </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript">
     function myFunction() {
         var prodCode = $('#codeInput').val();
@@ -118,37 +2052,46 @@
         window.open('http://www.e-shop.gr/show_used.phtml?id=' + prodCode + '&oem=' + prodSerial, '_blank');
     }
     new Vue({
-    	el: '#calc',
-    	data: {
-    		lib: '',
-    		inch1: '',
-    		inch2: '',
+        el: '#calc',
+        data: {
+            lib: '',
+            inch1: '',
+            inch2: '',
             inch3: '',
-    	},
-    	filters: {
-            toMM: function(value){
-                if (!value || isNaN(value)){
+        },
+        filters: {
+            toMM: function(value) {
+                if (!value || isNaN(value)) {
                     return "Enter a valid number";
-                }else{
+                } else {
                     return (parseFloat(value) * 2.54).toFixed(2) + ' ' + 'mm';
                 }
             },
-            toKG: function(value){
-                if (!value || isNaN(value)){
+            toKG: function(value) {
+                if (!value || isNaN(value)) {
                     return "Enter a valid number";
-                }else{
+                } else {
                     return (parseFloat(value) * 0.45359237).toFixed(2) + ' ' + 'kg';
                 }
             }
         },
         methods: {
-            clearBoxes: function(event){
+            clearBoxes: function(event) {
                 this.inch1 = '';
                 this.inch2 = '';
                 this.inch3 = '';
                 this.lib = '';
             }
         }
+    });
+    var $rows = $('#modalTable tr');
+    $('#search').keyup(function() {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
     });
     </script>
 </body>
